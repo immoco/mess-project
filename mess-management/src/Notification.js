@@ -1,7 +1,7 @@
 // Notification.js
 import React, {useEffect, useRef} from 'react';
-import noti from './noti.mp3';
-import './Notification.css'; // Import your CSS for styling
+import noti from './assets/noti.mp3';
+import './css/Notification.css'; // Import your CSS for styling
 
 const Notification = ({ message }) => {
   const notiRef = useRef(null);

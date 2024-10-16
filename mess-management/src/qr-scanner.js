@@ -1,9 +1,9 @@
 import React, { useState, useRef } from 'react';
 import QrScanner from 'react-qr-scanner'; // Ensure the QR scanner library is correctly imported
 import attendanceFuncs from './attendance.js'
-import './qrscanner.css';
+import './css/qrscanner.css';
 import { Link } from 'react-router-dom';
-import successSound from './success-sound.mp3';
+import successSound from './assets/success-sound.mp3';
 
 function QRScanner({ user, showNotification}) {
   const [showScanner, setShowScanner] = useState(false);

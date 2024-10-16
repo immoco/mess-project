@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { doc, getDoc } from 'firebase/firestore';
 import Modal from './Modal';
 import { db, collection, query, where, getDocs } from './firebase'; // Ensure you have the correct path to your firebase configuration
-import './HomePage.css'; // Create a CSS file for styles
-import HimalayaMessImage from "./Himalaya_Mess.png";
-import Mess from "./Mess.png";
-import Map from "./Map.png";
-import Remind from "./Remind.png";
+import './css/HomePage.css'; // Create a CSS file for styles
+import HimalayaMessImage from "./assets/Himalaya_Mess.png"
+import Mess from "./assets/Mess.png";
+import Map from "./assets/Map.png";
+import Remind from "./assets/Remind.png";
 
 const greetings = {
   English: {
