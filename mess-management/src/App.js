@@ -14,6 +14,7 @@ function App() {
   const [user, setUser] = useState(null);
   const [message, setMessage] = useState('');
 
+
   // Monitor auth state on page load
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {

@@ -1,0 +1,24 @@
+.notification-toggle {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-width: 400px;
+    margin: auto;
+  }
+  
+  .notification-prompt {
+    background-color: #f8d7da;
+    padding: 10px;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+  }
+  
+  .meal-preferences {
+    margin-top: 20px;
+  }
+  
+  label {
+    display: block;
+    margin: 10px 0;
+  }
+  

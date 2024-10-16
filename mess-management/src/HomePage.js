@@ -7,6 +7,7 @@ import HimalayaMessImage from "./assets/Himalaya_Mess.png"
 import Mess from "./assets/Mess.png";
 import Map from "./assets/Map.png";
 import Remind from "./assets/Remind.png";
+import NotificationToggle from './Notification_Toggle';
 
 const greetings = {
   English: {
@@ -30,6 +31,7 @@ const greetings = {
   // Add more languages as needed
 };
 
+
 const getGreeting = (hour, language) => {
   const langGreetings = greetings[language] || greetings['English'];
   if (hour >= 5 && hour < 12) return langGreetings.morning;
@@ -39,12 +41,16 @@ const getGreeting = (hour, language) => {
 };
 
 const HomePage = ({ user}) => {
+  const [showToggle, setShowToggle] = useState(false); // Moved here
   const [messName, setMessName] = useState('');
   const [messLocation, setMessLocation] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState(null);
   const [language, setLanguage] = useState('English');
-  
+
+  const handleToggleClick = () => {
+    setShowToggle(!showToggle); 
+  }
   const [attendance, setAttendance] = useState({
     breakfast: false,
     lunch: false,
@@ -175,7 +181,7 @@ if (attendance.breakfast && currentHour < 11) { // Assuming breakfast is until 1
           Navigate Me
           <img src={Map} alt="Map" className="box-image" />
         </a>
-        <div className="box">
+        <div className="box" onClick={handleToggleClick}>
           Remind Me!
           <img src={Remind} alt="Remind" className="box-image" />
         </div>
@@ -183,6 +189,8 @@ if (attendance.breakfast && currentHour < 11) { // Assuming breakfast is until 1
           Instructions
         </div>
       </div>
+
+      {showToggle && <NotificationToggle />} {/* Conditionally render NotificationToggle */}
       <Modal show={showModal} handleClose={handleCloseModal}>
       {modalContent === 'instructions' && (
     <>
