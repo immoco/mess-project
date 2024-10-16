@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { db } from './firebase';
 import { collection, query, where, getDocs, orderBy } from 'firebase/firestore';
-import './AttendanceCard.css'; // Import your CSS
+import './css/AttendanceCard.css'; // Import your CSS
 import { format } from 'date-fns';
 import ConfettiExplosion from 'react-confetti-explosion';
 

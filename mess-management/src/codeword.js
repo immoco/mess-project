@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react';
 import { db, collection, query, where , getDocs} from './firebase.js'; // Import Firestore
 import attendanceFuncs from './attendance'
-import successSound from './success-sound.mp3';
-import './codeword.css';
+import successSound from './assets/success-sound.mp3';
+import './css/codeword.css';
 
 function CodewordInput({user, showNotification}) {
   const [codeword, setCodeword] = useState('');
