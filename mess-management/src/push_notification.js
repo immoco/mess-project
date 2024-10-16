@@ -1,7 +1,4 @@
-import React from 'react';
-
-const NotificationComponent = () => {
-  const subscribeToNotifications = async () => {
+export const subscribeToNotifications = async (user) => {
     // Request permission for notifications
     const permission = await Notification.requestPermission();
 
@@ -13,16 +10,16 @@ const NotificationComponent = () => {
           applicationServerKey: 'BKmzKoRVsgYU6M_5JYvk_Qjn93jcg4kx_lUExRo-nHGehSOr8uj2XA1UBEUKgU2LHKcuKG-hkyZeQjhqBIg_R3w', // Replace with your VAPID key
         });
 
-        const user = {
-            email: 'immocompany01@gmail.com',  // Replace with the variable holding the user's email
-            displayName: 'IMMO',  // Replace with the variable holding the user's display name
+        const userData = {
+            email: user.email,  // Replace with the variable holding the user's email
+            displayName: user.displayName,  // Replace with the variable holding the user's display name
             subscription: subscription // Your existing subscription object
           };
 
         // Send subscription to the backend
         await fetch('https://notify-backend-47z5.onrender.com/subscribe', {
           method: 'POST',
-          body: JSON.stringify(user),
+          body: JSON.stringify(userData),
           headers: {
             'Content-Type': 'application/json',
           },
@@ -39,13 +36,34 @@ const NotificationComponent = () => {
     }
   };
 
-  return (
-    <div>
-      <button onClick={subscribeToNotifications}>
-        Subscribe to Notifications
-      </button>
-    </div>
-  );
-};
 
-export default NotificationComponent;
+  export const unsubscribeFromNotifications = async (user) => {
+    try {
+      // Assuming the user has a service worker registration
+      const registration = await navigator.serviceWorker.ready;
+  
+      // Get the current subscription
+      const subscription = await registration.pushManager.getSubscription();
+  
+      if (subscription) {
+        // Unsubscribe from push notifications
+        await subscription.unsubscribe();
+  
+        // Send the request to remove the subscription from the backend
+        await fetch('https://notify-backend-47z5.onrender.com/unsubscribe', {
+          method: 'POST',
+          body: JSON.stringify({ email: user.email }),  // Pass user email to identify the subscription
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+  
+        console.log('User unsubscribed from notifications!');
+      } else {
+        console.log('No subscription found for the user.');
+      }
+    } catch (error) {
+      console.error('Unsubscription failed:', error);
+    }
+  };
+  

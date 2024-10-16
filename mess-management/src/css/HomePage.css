@@ -83,4 +83,83 @@
   .feedback-button:hover {
     background-color: #00796b; /* Darker green */
   }
+
+  .reminder-modal {
+    background-color: #f9f9f9; /* Light background for contrast */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    padding: 20px; /* Padding for space inside the modal */
+    text-align: center; /* Centered text */
+    inline-size: 300px; /* Set a fixed width */
+    margin: auto; /* Center the modal horizontally */
+  }
+  
+  .reminder-modal h2 {
+    font-size: 24px; /* Increase font size for the header */
+    color: #333; /* Dark text color */
+    margin-block-end: 15px; /* Space below the header */
+  }
+  
+  .reminder-modal p {
+    font-size: 16px; /* Font size for the paragraph */
+    color: #666; /* Lighter text color */
+    margin-block-end: 20px; /* Space below the paragraph */
+  }
+  
+  .reminder-modal label {
+    font-size: 16px; /* Font size for the label */
+    color: #333; /* Dark text color */
+    margin-block-end: 15px; /* Space below the label */
+    cursor: pointer; /* Cursor pointer on hover */
+  }
+  
+  .toggle-switch {
+    position: relative;
+    display: inline-block;
+    inline-size: 60px; /* Width of the toggle switch */
+    block-size: 30px; /* Height of the toggle switch */
+    margin: 20px auto; /* Center the toggle switch */
+  }
+  
+  .toggle-switch input {
+    opacity: 0; /* Hide the default checkbox */
+    inline-size: 0;
+    block-size: 0;
+  }
+  
+  .switch {
+    background-color: #ccc; /* Default background color */
+    border-radius: 30px; /* Rounded corners */
+    display: flex; /* Flexbox for alignment */
+    align-items: center; /* Center the content */
+    padding: 5px; /* Padding inside the switch */
+    cursor: pointer; /* Cursor pointer on hover */
+    position: relative; /* For positioning the slider */
+    transition: background-color 0.3s; /* Smooth transition */
+  }
+  
+  .slider {
+    background-color: white; /* Background color of the slider */
+    border-radius: 50%; /* Rounded slider */
+    position: absolute; /* Positioning for sliding effect */
+    block-size: 22px; /* Height of the slider */
+    inline-size: 22px; /* Width of the slider */
+    inset-inline-start: 4px; /* Starting position */
+    transition: transform 0.3s; /* Smooth transition for sliding */
+  }
+  
+  input:checked + .switch {
+    background-color: #4CAF50; /* Background color when checked */
+  }
+  
+  input:checked + .switch .slider {
+    transform: translateX(30px); /* Move the slider to the right */
+  }
+  
+  .status {
+    color: #333; /* Color for the status text */
+    margin-inline-start: 10px; /* Space between switch and status */
+    font-size: 16px; /* Font size for the status */
+    font-weight: bold; /* Bold font for emphasis */
+  }
   

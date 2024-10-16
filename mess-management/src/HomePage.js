@@ -7,7 +7,7 @@ import HimalayaMessImage from "./assets/Himalaya_Mess.png"
 import Mess from "./assets/Mess.png";
 import Map from "./assets/Map.png";
 import Remind from "./assets/Remind.png";
-import NotificationToggle from './Notification_Toggle';
+import { subscribeToNotifications, unsubscribeFromNotifications } from './push_notification';
 
 const greetings = {
   English: {
@@ -41,22 +41,23 @@ const getGreeting = (hour, language) => {
 };
 
 const HomePage = ({ user}) => {
-  const [showToggle, setShowToggle] = useState(false); // Moved here
   const [messName, setMessName] = useState('');
   const [messLocation, setMessLocation] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState(null);
   const [language, setLanguage] = useState('English');
 
-  const handleToggleClick = () => {
-    setShowToggle(!showToggle); 
-  }
+
   const [attendance, setAttendance] = useState({
     breakfast: false,
     lunch: false,
     dinner: false,
   });
   const [loading, setLoading] = useState(true);
+
+  // States for Reminder toggle
+  const [remindMe, setRemindMe] = useState(false);
+  const [notificationModal, setNotificationModal] = useState(false);
 
   const handleOpenModal = (content) => {
     setModalContent(content);
@@ -67,7 +68,17 @@ const HomePage = ({ user}) => {
     setShowModal(false);
   };
 
-  
+  const handleToggleReminder = () => {
+    if (remindMe === false) {
+      subscribeToNotifications(user)
+    }
+    else{
+      unsubscribeFromNotifications(user)
+    }
+    setRemindMe(!remindMe);
+    // Add logic to handle notification state on the backend if necessary
+  };
+
   useEffect(() => {
     const fetchLanguage = async () => {
       const userDoc = doc(db, 'students', user.email);
@@ -181,16 +192,38 @@ if (attendance.breakfast && currentHour < 11) { // Assuming breakfast is until 1
           Navigate Me
           <img src={Map} alt="Map" className="box-image" />
         </a>
-        <div className="box" onClick={handleToggleClick}>
+        <div className="box" onClick={() => setNotificationModal(true)}>
           Remind Me!
           <img src={Remind} alt="Remind" className="box-image" />
         </div>
+
+        {/* Notification Toggle Modal */}
+      {notificationModal && (
+        <Modal show={notificationModal} handleClose={() => setNotificationModal(false)}>
+        <div className="reminder-modal">
+          <h2>Set Reminder</h2>
+            <p>Do you want to receive notifications?</p>
+            <div className="toggle-switch">
+              <input 
+                type="checkbox" 
+                id="remindToggle" 
+                checked={remindMe} 
+                onChange={handleToggleReminder} 
+              />
+              <label htmlFor="remindToggle" className="switch">
+                <span className="slider"></span>
+                <span className="status">{remindMe ? "On" : "Off"}</span>
+              </label>
+            </div>
+        </div>
+        </Modal>
+      )}
+
         <div className="box" onClick={() => handleOpenModal('instructions')}>
           Instructions
         </div>
       </div>
 
-      {showToggle && <NotificationToggle />} {/* Conditionally render NotificationToggle */}
       <Modal show={showModal} handleClose={handleCloseModal}>
       {modalContent === 'instructions' && (
     <>
