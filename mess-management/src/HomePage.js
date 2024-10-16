@@ -52,6 +52,10 @@ const HomePage = ({ user}) => {
   });
   const [loading, setLoading] = useState(true);
 
+  // States for Reminder toggle
+  const [remindMe, setRemindMe] = useState(false);
+  const [notificationModal, setNotificationModal] = useState(false);
+
   const handleOpenModal = (content) => {
     setModalContent(content);
     setShowModal(true);
@@ -61,7 +65,11 @@ const HomePage = ({ user}) => {
     setShowModal(false);
   };
 
-  
+  const handleToggleReminder = () => {
+    setRemindMe(!remindMe);
+    // Add logic to handle notification state on the backend if necessary
+  };
+
   useEffect(() => {
     const fetchLanguage = async () => {
       const userDoc = doc(db, 'students', user.email);
@@ -175,10 +183,33 @@ if (attendance.breakfast && currentHour < 11) { // Assuming breakfast is until 1
           Navigate Me
           <img src={Map} alt="Map" className="box-image" />
         </a>
-        <div className="box">
+        <div className="box" onClick={() => setNotificationModal(true)}>
           Remind Me!
           <img src={Remind} alt="Remind" className="box-image" />
         </div>
+
+        {/* Notification Toggle Modal */}
+      {notificationModal && (
+        <Modal show={notificationModal} handleClose={() => setNotificationModal(false)}>
+        <div className="reminder-modal">
+          <h2>Set Reminder</h2>
+            <p>Do you want to receive notifications?</p>
+            <div className="toggle-switch">
+              <input 
+                type="checkbox" 
+                id="remindToggle" 
+                checked={remindMe} 
+                onChange={handleToggleReminder} 
+              />
+              <label htmlFor="remindToggle" className="switch">
+                <span className="slider"></span>
+                <span className="status">{remindMe ? "On" : "Off"}</span>
+              </label>
+            </div>
+        </div>
+        </Modal>
+      )}
+
         <div className="box" onClick={() => handleOpenModal('instructions')}>
           Instructions
         </div>
