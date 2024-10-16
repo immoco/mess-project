@@ -1,0 +1,121 @@
+.App {
+  text-align: center;
+}
+
+.dark-mode {
+  background-color: rgb(8, 8, 8);
+}
+
+.toggle-dark-mode {
+  inset-block-end: 20px;
+  inset-inline-end: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.toggle-dark-mode:hover {
+  background-color: #0056b3;
+}
+
+.sign-in-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 60% / 20%;
+	transform: translateY(180px);
+	transition: 1s ease-in-out;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  inline-size: 200px;
+  block-size: 200px;
+  margin-block-end: 10px;
+}
+
+h2 {
+  margin: 20px 0;
+}
+
+.logout-icon {
+  position: absolute; /* Position it absolutely */
+  inset-block-start: 20px; /* Adjust the top position */
+  inset-inline-start: 20px; /* Adjust the right position */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  font-size: 24px; /* Adjust size */
+  transform: scaleX(-1);
+  color: #007bff; /* Change color to match your theme */
+}
+
+.google-signin-btn {
+  display: flex;
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center icon and text vertically */
+  background-color: #007bff; /* Google blue */
+  color: #fff; /* White text */ /* No border */
+  border-radius: 10px; /* Rounded corners */
+  padding: 15px; /* Padding */
+  font-size: 16px; /* Font size */
+  cursor: pointer; /* Pointer cursor */
+  transition: background-color 0.3s; /* Transition effect */
+  inline-size: 100%; /* Make the button take the full width */
+  max-inline-size: 210px; /* Optional: Set a max-width for better appearance */
+  margin: auto; /* Center the button horizontally */
+}
+
+
+.google-signin-btn:hover {
+  background-color: #357ae8; /* Darker blue on hover */
+}
+
+.google-signin-btn i {
+  margin-inline-end: 10px; /* Space between icon and text */
+}
+
+
+
+.tabs {
+  display: flex;
+  flex-direction: column; /* Stack tabs vertically on small screens */
+  margin: 20px 0;
+}
+
+.tabs button {
+  padding: 15px;
+  margin: 5px 0; /* Add spacing between tabs */
+  border: none;
+  background-color: #f1f1f1;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px; /* Ensure the text is readable */
+}
+
+.tabs button.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.tab-content {
+  padding: 20px;
+}
+
+.tab-content img {
+  border-radius: 50%;
+  margin-block-start: 10px;
+  inline-size: 100px;
+  block-size: 100px;
+}
+
+/* Adjustments for larger screens */
+@media (min-width: 600px) {
+  .tabs {
+    flex-direction: row; /* Stack tabs horizontally on larger screens */
+  }
+
+  .tabs button {
+    margin: 0 5px; /* Adjust spacing for horizontal layout */
+  }
+}

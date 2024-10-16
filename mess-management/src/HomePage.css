@@ -1,0 +1,86 @@
+/* HomePage.css */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;700&display=swap'); /* Tamil Font */
+
+
+.homepage {
+    padding: 20px; /* Padding around the grid */
+  }
+
+  
+  .user-profile {
+    display: flex; /* Use flexbox to align items horizontally */
+    align-items: center; /* Center items vertically */
+    background-color: #00aaff; /* Example background color, adjust as needed */
+    padding: 20px; /* Add padding to the box */
+    border-radius: 20px; /* Round the corners of the box */
+    margin-block-end: 20px;
+}
+
+.profile-info {
+  font-family: 'Noto Sans Tamil', sans-serif;  flex: 0.9; /* Allow the profile info to take available space */
+}
+
+
+.profile-image {
+    inline-size: 100px; /* Set a fixed width for the profile image */
+    block-size: 100px; /* Set a fixed height for the profile image */
+    border-radius: 50%; /* Make the image circular */
+    margin-inline-start: 20px; /* Space between text and image */
+}
+  
+  .box-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    gap: 20px; /* Space between boxes */
+
+  }
+
+  .box {
+    border-radius: 20px; /* Rounded corners */
+    block-size: 120px; /* Fixed height for boxes */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    font-size: 18px; /* Font size */
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    inline-size: 100px; /* adjust the size as needed */
+    background-color: #00aaff; /* or any background color you prefer */
+    padding: 20px;
+    margin-block-start: auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* optional, for a subtle shadow */
+    color: rgb(251, 251, 251); /* or any text color you prefer */
+  }
+  
+  .box img {
+    inline-size: 75px; /* adjust the size as needed */
+    block-size: 75px; /* adjust the size as needed */
+    margin-block-end:auto; /* space between the image and text */
+  }
+  
+
+  .box:hover {
+    background-color: #e0e0e0;
+  }
+
+  a.box {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .feedback-button {
+    background-color: #00bbfe; /* Green background */
+    color: white; /* White text */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .feedback-button:hover {
+    background-color: #00796b; /* Darker green */
+  }
+  

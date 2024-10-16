@@ -1,0 +1,23 @@
+/* Footer.css */
+.footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #f8f9fa; /* Light background color */
+    padding: 10px 0;
+    position: fixed; /* Fixed to the bottom */
+    inset-block-end: 0;
+    inline-size: 100%; /* Full width */
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+  
+  .footer-icon {
+    color: #007bff; /* Icon color */
+    text-decoration: none; /* Remove underline */
+    font-size: 24px; /* Icon size */
+  }
+  
+  .footer-icon:hover {
+    color: #0056b3; /* Change color on hover */
+  }
+  

@@ -1,0 +1,66 @@
+/* Notification.css */
+.notification {
+  position: fixed;
+  inset-block-end: 20px;
+  background-color: #48cae4;
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Ensure it appears above other elements */
+  animation: slideIn 0.5s forwards, slideOut 0.5s forwards 2.8s; /* Slide-in and slide-out animations */
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* Slide-in animation */
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Slide-out animation */
+@keyframes slideOut {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+}
+
+.timer {
+  position: absolute;
+  inset-block-end: -5px; /* Position the timer slightly below the notification */
+  inset-inline-start: 50%;
+  transform: translateX(-50%);
+  block-size: 5px;
+  inline-size: 100%;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress {
+  block-size: 100%;
+  inline-size: 100%;
+  background-color: #bf00ff; /* Yellow color for the progress */
+  animation: progressAnimation 3s linear forwards; /* Duration of the timer */
+}
+
+@keyframes progressAnimation {
+  from {
+    inline-size: 100%;
+  }
+  to {
+    inline-size: 0;
+  }
+}
+

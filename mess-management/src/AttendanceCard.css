@@ -1,0 +1,122 @@
+.attendance-card-container {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+  transition: opacity 0.5s ease-in-out, transform 1s;
+}
+
+.attendance-card-container.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.attendance-card-container.show {
+  opacity: 1;
+}
+
+.attendance-card-container.rotate {
+  transform: rotateY(360deg); /* Rotate the card */
+}
+
+.attendance-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 20px auto;
+  background-color: #f9f9f9;
+}
+
+.show-card-button {
+  border-radius: 50px;
+  background-color: #5ca1e1;
+  border:#5ca1e1;
+  color: #fff;
+  text-align: center;
+  font-size: 18px;
+  padding: 18px;
+  inline-size: 250px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 36px;
+  box-shadow: 0 10px 20px -8px rgba(0, 0, 0,.7);
+}
+
+.show-card-button{
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.show-card-button:after {
+  content: ' »';
+  position:static;
+  opacity: 0;  
+  transition: 0.5s;
+}
+
+.show-card-button:hover{
+  padding-inline-end: 24px;
+  padding-inline-start:8px;
+}
+
+.show-card-button:hover:after {
+  opacity: 1;
+  inset-inline-end: 10px;
+}
+
+
+.clickable-cell {
+  cursor: pointer;
+  position: relative;
+  inline-size: 100px; /* Adjust width as needed */
+  block-size: 50px; /* Adjust height as needed */
+  perspective: 1000px; /* Create perspective for the flip effect */
+}
+
+.cell-inner {
+  position: relative;
+  inline-size: 100%;
+  block-size: 100%;
+  transition: transform 0.6s; /* Duration of the flip effect */
+  transform-style: preserve-3d; /* Ensures 3D effects are applied */
+}
+
+.clickable-cell.flipped .cell-inner {
+  transform: rotateY(180deg); /* Rotate the cell to show the back */
+}
+
+.cell-front,
+.cell-back {
+  position: absolute;
+  inline-size: 100%;
+  block-size: 100%;
+  backface-visibility: hidden; /* Hides the back of the cell when facing away */
+}
+
+.cell-front {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+}
+
+.cell-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f9f9f9;
+  transform: rotateY(180deg); /* Rotate the back to be hidden initially */
+}
+
+.timestamp {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 4px;
+  position: absolute;
+  inset-block-start: 100%;
+  inset-inline-start: 0;
+  transform: translateY(4px);
+}
+
