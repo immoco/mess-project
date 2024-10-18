@@ -7,7 +7,8 @@ import HimalayaMessImage from "./assets/Himalaya_Mess.png"
 import Mess from "./assets/Mess.png";
 import Map from "./assets/Map.png";
 import Remind from "./assets/Remind.png";
-import { subscribeToNotifications, unsubscribeFromNotifications } from './push_notification';
+import { subscribeToNotifications, unsubscribeFromNotifications, initializeDeviceId } from './push_notification';
+import { set } from 'date-fns';
 
 const greetings = {
   English: {
@@ -73,11 +74,42 @@ const HomePage = ({ user}) => {
       subscribeToNotifications(user)
     }
     else{
-      unsubscribeFromNotifications(user)
+      unsubscribeFromNotifications()
     }
     setRemindMe(!remindMe);
     // Add logic to handle notification state on the backend if necessary
   };
+
+  const deviceId = initializeDeviceId()
+
+  useEffect(() => {
+    const fetchReminderState = async () => {
+      try {
+        // Reference to the 'subscribedUsers' collection
+        const subscriptionRef = collection(db, 'subscribedUsers');
+
+        const q = query(subscriptionRef, where('device_id', '==', deviceId));
+
+        const querySnapshot = await getDocs(q);
+
+        if (!querySnapshot.empty) {
+          querySnapshot.forEach((doc) => {
+            const userData = doc.data();
+            // Check if 'reminder_state' is true and update the state
+            if (userData.reminder_state === true) {
+              setRemindMe(userData.reminder_state);
+            }
+          });
+        }
+      } catch (error) {
+        console.error('Error fetching reminder state:', error);
+      }
+    };
+
+    if (deviceId) {
+      fetchReminderState();
+    }
+  }, [deviceId]);
 
   useEffect(() => {
     const fetchLanguage = async () => {

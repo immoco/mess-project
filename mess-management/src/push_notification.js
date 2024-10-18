@@ -1,3 +1,22 @@
+import { v4 as uuidv4 } from 'uuid'; // Import the uuid library
+
+// Function to initialize or retrieve the device ID
+export const initializeDeviceId = () => {
+    // Check if a device ID already exists in localStorage
+    let deviceId = localStorage.getItem('deviceId');
+
+    // If no device ID exists, generate a new one and store it
+    if (!deviceId) {
+        deviceId = uuidv4(); // Generate a new UUID
+        localStorage.setItem('deviceId', deviceId); // Store it in localStorage
+    }
+
+    return deviceId; // Return the device ID
+};
+
+// Usage
+const deviceId = initializeDeviceId();
+
 export const subscribeToNotifications = async (user) => {
     // Request permission for notifications
     const permission = await Notification.requestPermission();
@@ -13,7 +32,9 @@ export const subscribeToNotifications = async (user) => {
         const userData = {
             email: user.email,  // Replace with the variable holding the user's email
             displayName: user.displayName,  // Replace with the variable holding the user's display name
-            subscription: subscription // Your existing subscription object
+            subscription: subscription,
+            device_id:deviceId, // Your existing subscription object
+            reminder_state: true
           };
 
         // Send subscription to the backend
@@ -37,22 +58,18 @@ export const subscribeToNotifications = async (user) => {
   };
 
 
-  export const unsubscribeFromNotifications = async (user) => {
+  export const unsubscribeFromNotifications = async () => {
     try {
-      // Assuming the user has a service worker registration
-      const registration = await navigator.serviceWorker.ready;
-  
-      // Get the current subscription
-      const subscription = await registration.pushManager.getSubscription();
-  
-      if (subscription) {
-        // Unsubscribe from push notifications
-        await subscription.unsubscribe();
-  
+      const deviceId = localStorage.getItem('deviceId');
+       if (deviceId){
+        const payload = {
+          device_id: deviceId
+        }
+
         // Send the request to remove the subscription from the backend
         await fetch('https://notify-backend-47z5.onrender.com/unsubscribe', {
           method: 'POST',
-          body: JSON.stringify({ email: user.email }),  // Pass user email to identify the subscription
+          body: JSON.stringify(payload),  // Pass user email to identify the subscription
           headers: {
             'Content-Type': 'application/json',
           },

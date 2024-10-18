@@ -6,6 +6,17 @@ import { BrowserRouter as Router } from 'react-router-dom'; // Import Router
 import reportWebVitals from './reportWebVitals';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service_worker.js')
+      .then(registration => {
+        console.log('Service Worker registered', registration);
+      })
+      .catch(err => {
+        console.error('Service Worker registration failed:', err);
+      });
+  });
+}
 
 
 ReactDOM.render(
