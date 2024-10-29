@@ -3,12 +3,12 @@ import { doc, getDoc } from 'firebase/firestore';
 import Modal from './Modal';
 import { db, collection, query, where, getDocs } from './firebase'; // Ensure you have the correct path to your firebase configuration
 import './css/HomePage.css'; // Create a CSS file for styles
-import HimalayaMessImage from "./assets/Himalaya_Mess.png"
+import {Himalaya, Nilgiri} from './mess_images'
 import Mess from "./assets/Mess.png";
-import Map from "./assets/Map.png";
+import Map from "./assets/Map_Nav.png";
 import Remind from "./assets/Remind.png";
 import { subscribeToNotifications, unsubscribeFromNotifications, initializeDeviceId } from './push_notification';
-import { set } from 'date-fns';
+// import { set } from 'date-fns';
 
 const greetings = {
   English: {
@@ -41,8 +41,19 @@ const getGreeting = (hour, language) => {
   return langGreetings.night;
 };
 
+const nextMeal = ()=> {
+  const now = new Date();
+  const hour = now.getHours();
+
+
+  if (hour >= 19 || hour < 7) return 'Breakfast';
+  if (hour >= 7 && hour < 12) return 'Lunch';
+  if (hour >= 12 && hour < 19) return 'Dinner';
+}
+
 const HomePage = ({ user}) => {
   const [messName, setMessName] = useState('');
+  const [messImage, setMessImage] = useState('');
   const [messLocation, setMessLocation] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState(null);
@@ -134,7 +145,12 @@ const HomePage = ({ user}) => {
         if (userDoc.exists()) {
           const userData = userDoc.data();
           setMessName(userData.messName);
-          setMessLocation(userData.messLocation);
+          const messDoc = await getDoc(doc(db, 'mess', userData.messName));
+          if (messDoc.exists){
+            console.log(messDoc.data());
+            setMessLocation(messDoc.data().messLocation);
+            setMessImage(messDoc.data().messName);
+          }
         }
       } catch (error) {
         console.error('Error fetching user mess details:', error);
@@ -182,7 +198,6 @@ const HomePage = ({ user}) => {
   }, [user.email]);
 
   if (loading) return <p>Loading...</p>;
-
   const currentHour = new Date().getHours(); // Get the current hour
 let mealMessage;
 if (attendance.breakfast && currentHour < 11) { // Assuming breakfast is until 11 AM
@@ -200,17 +215,26 @@ if (attendance.breakfast && currentHour < 11) { // Assuming breakfast is until 1
   mealMessage = <p>Have your Dinner now!</p>;
 }
 
-  const UserProfile = () => (
-    <div className="user-profile">
-      <div className="profile-info">
-        <h3>{greeting}, {user.displayName}</h3>
-        <p>Current Meal</p>
-        <p>Today's Breakfast is Dosa & Toasted Bread with Jammy.</p>
-        {mealMessage}
-      </div>
-      <img src={user.photoURL} alt="userProfile" className="profile-image" />
+const UserProfile = () => (
+  <div className="user-profile">
+    <div className="profile-info">
+      <h3>{greeting}, {user.displayName}</h3>
+      <p>Current Meal</p>
+      <p>Today's Breakfast is Dosa & Toasted Bread with Jammy.</p>
+      {mealMessage}
     </div>
+    <img src={user.photoURL} alt="userProfile" className="profile-image" />
+  </div>
+);
+
+const ImageComponent = ({ imageName }) => {
+  // Select the image based on the `imageName` prop
+  const images = { Himalaya, Nilgiri}; // Add other images if needed
+  return (
+      <img src={images[imageName]} alt={imageName} />
   );
+};  
+
 
   return (
     <div className="homepage">
@@ -247,6 +271,7 @@ if (attendance.breakfast && currentHour < 11) { // Assuming breakfast is until 1
                 <span className="status">{remindMe ? "On" : "Off"}</span>
               </label>
             </div>
+            <p>We will remind you for {nextMeal()}</p>
         </div>
         </Modal>
       )}
@@ -288,7 +313,7 @@ if (attendance.breakfast && currentHour < 11) { // Assuming breakfast is until 1
         {modalContent === 'messDetails' && (
           <>
             <h2>My Dining Hall</h2>
-            <img src={HimalayaMessImage} alt="Mess" className="mess-image" />
+            <ImageComponent imageName={messImage} />
             <p><b>{messName}</b></p>
             <p>Mess Location: {messLocation}</p>
             <p>Other details about the mess can be added here.</p>

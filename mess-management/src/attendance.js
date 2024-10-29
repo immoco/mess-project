@@ -68,7 +68,7 @@ export function getCurrentMeal() {
   const hour = now.getHours();
 
   if (hour >= 7 && hour < 11) return 'BREAKFAST';
-  if (hour >= 12 && hour < 16) return 'LUNCH';
+  if (hour >= 12 && hour < 14) return 'LUNCH';
   if (hour >= 19 && hour < 22) return 'DINNER';
   return null;
 }

@@ -3,7 +3,10 @@
 
 
 .homepage {
-    padding: 20px; /* Padding around the grid */
+    padding: 20px 20px 80px 20px; /* Padding around the grid */
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    max-height: 100vh; 
   }
 
   
@@ -55,9 +58,11 @@
   }
   
   .box img {
-    inline-size: 75px; /* adjust the size as needed */
-    block-size: 75px; /* adjust the size as needed */
+    inline-size: 80px; /* adjust the size as needed */
+    block-size: 80px; /* adjust the size as needed */
     margin-block-end:auto; /* space between the image and text */
+    border-radius: 50%;     /* Makes the image circular */
+
   }
   
 
