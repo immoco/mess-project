@@ -7,6 +7,7 @@ import HimalayaMessImage from "./assets/Himalaya_Mess.png"
 import Mess from "./assets/Mess.png";
 import Map from "./assets/Map.png";
 import Remind from "./assets/Remind.png";
+import Instructions from "./assets/Instructions.png"
 
 const greetings = {
   English: {
@@ -212,6 +213,7 @@ if (attendance.breakfast && currentHour < 11) { // Assuming breakfast is until 1
 
         <div className="box" onClick={() => handleOpenModal('instructions')}>
           Instructions
+          <img src={Instructions} alt="Instructions" className="box-image" />
         </div>
       </div>
       <Modal show={showModal} handleClose={handleCloseModal}>
