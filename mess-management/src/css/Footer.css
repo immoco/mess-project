@@ -5,10 +5,10 @@
     align-items: center;
     background-color: #f8f9fa; /* Light background color */
     padding: 10px 0;
-    position: fixed; /* Fixed to the bottom */
     inset-block-end: 0;
     inline-size: 100%; /* Full width */
     box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    position: fixed;
   }
   
   .footer-icon {

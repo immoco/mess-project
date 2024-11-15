@@ -163,7 +163,7 @@ const AttendanceCard = ({ userEmail }) => {
 // };
 
 return (
-  <div>
+  <div className='attendance_card'>
     <button onClick={handleButtonClick} className="show-card-button">Show Attendance Card</button>
     
     <div className={`attendance-card-container ${rotateCard ? 'rotate' : ''} ${showCard ? 'show' : 'hide'}`}>

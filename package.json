@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "firebase": "^10.13.0",
-    "react-confetti": "^6.1.0",
-    "react-firebase-hooks": "^5.1.1"
-  }
-}

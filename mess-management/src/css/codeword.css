@@ -5,16 +5,21 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%; /* Adjust width as needed */
     margin: 0 auto;
     padding: 20px;
     max-inline-size: 400px;
     background-color: #f9f9f9;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
   
   .codeword-container input {
-    inline-size: 100%;
+    inline-size: 80%;
     padding: 10px;
     margin-block-end: 10px;
     border: 2px solid #ddd;
