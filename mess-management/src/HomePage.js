@@ -7,12 +7,8 @@ import {Himalaya, Nilgiri} from './mess_images'
 import Mess from "./assets/Mess.png";
 import Map from "./assets/Map_Nav.png";
 import Remind from "./assets/Remind.png";
-<<<<<<< HEAD
 import Instructions from "./assets/Instructions.png"
-=======
 import { subscribeToNotifications, unsubscribeFromNotifications, initializeDeviceId } from './push_notification';
-// import { set } from 'date-fns';
->>>>>>> be66f714dc747422339cc6c93733cc2446de484f
 
 const greetings = {
   English: {
@@ -288,32 +284,41 @@ const ImageComponent = ({ imageName }) => {
 
       <Modal show={showModal} handleClose={handleCloseModal}>
       {modalContent === 'instructions' && (
-    <>
+      <>
       <h2>How to Use This Web App</h2>
-        <p>Welcome to the Mess Management Web App! Here are the steps to use this application:</p>
-        
-        <h3>1. Logging In</h3>
-        <p>To get started, please log in using your Google account. Click on the "Sign in with Google" button on the main page.</p>
-        
-        <h3>2. QR Code Scanning</h3>
-        <p>To mark your attendance, go to the QR Code Scanner tab and scan the QR code available at the mess. The system will automatically record your attendance.</p>
-        
-        <h3>3. Viewing Attendance</h3>
-        <p>You can view your attendance record by navigating to the Attendance Card tab. This will display your attendance history, including the dates and times of your meals.</p>
-        
-        <h3>4. Codeword Input</h3>
-        <p>If you are unable to scan the QR code, you can use the Codeword Input tab. Enter the provided codeword to mark your attendance.</p>
-        
-        <h3>5. User Profile</h3>
-        <p>Your profile information, including your display name and email, can be viewed in the Home tab. You can also see a greeting message based on the time of day and the current meal details.</p>
-
-        <h3>6. Notifications</h3>
-        <p>You will receive notifications reminding you to have your meals. Ensure notifications are enabled in your browser settings to stay updated.</p>
-        
-        <h3>7. Feedback</h3>
-        <p>We value your feedback! Click the button below to provide your feedback on the application.</p>
-        <button className="feedback-button" onClick={() => window.open('https://messmanagementfeedbackform.paperform.co', '_blank')}>Give Feedback</button>
-        </>
+      <p>Welcome to the Mess Management Web App! Here are the steps to use this application:</p>
+      <div className="instructions-container">
+        <div className="instruction-point left">
+          <h3>1. Logging In</h3>
+          <p>To get started, please log in using your Google account. Click on the "Sign in with Google" button on the main page.</p>
+        </div>
+        <div className="instruction-point right">
+          <h3>2. QR Code Scanning</h3>
+          <p>To mark your attendance, go to the QR Code Scanner tab and scan the QR code available at the mess. The system will automatically record your attendance.</p>
+        </div>
+        <div className="instruction-point left">
+          <h3>3. Viewing Attendance</h3>
+          <p>You can view your attendance record by navigating to the Attendance Card tab. This will display your attendance history, including the dates and times of your meals.</p>
+        </div>
+        <div className="instruction-point right">
+          <h3>4. Codeword Input</h3>
+          <p>If you are unable to scan the QR code, you can use the Codeword Input tab. Enter the provided codeword to mark your attendance.</p>
+        </div>
+        <div className="instruction-point left">
+          <h3>5. User Profile</h3>
+          <p>Your profile information, including your display name and email, can be viewed in the Home tab. You can also see a greeting message based on the time of day and the current meal details.</p>
+        </div>
+        <div className="instruction-point right">
+          <h3>6. Notifications</h3>
+          <p>You will receive notifications reminding you to have your meals. Ensure notifications are enabled in your browser settings to stay updated.</p>
+        </div>
+        <div className="instruction-point left">
+          <h3>7. Feedback</h3>
+          <p>We value your feedback! Click the button below to provide your feedback on the application.</p>
+        </div>
+      </div>
+      <button className="feedback-button" onClick={() => window.open('https://messmanagementfeedbackform.paperform.co', '_blank')}>Give Feedback</button>
+    </>
         )}
         {modalContent === 'messDetails' && (
           <>

@@ -6,7 +6,7 @@
     padding: 20px 20px 80px 20px; /* Padding around the grid */
     overflow-y: auto;
     scroll-behavior: smooth;
-    max-height: 100vh; 
+    max-block-size: 100vh; 
   }
 
   

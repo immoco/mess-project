@@ -164,7 +164,7 @@ const AttendanceCard = ({ userEmail }) => {
 
 return (
   <div className='attendance_card'>
-    <button onClick={handleButtonClick} className="show-card-button">Show Attendance Card</button>
+    <button onClick={handleButtonClick} className="show-card-button1 show-card-button2">Show Attendance Card</button>
     
     <div className={`attendance-card-container ${rotateCard ? 'rotate' : ''} ${showCard ? 'show' : 'hide'}`}>
       {showCard && (
