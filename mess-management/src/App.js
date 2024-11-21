@@ -10,6 +10,7 @@ import AttendanceCard from './attendanceCard.js';
 import CodewordInput from './codeword.js';
 import HomePage from './HomePage.js';
 import Notification from './Notification'; // Import Notification component
+import { SiGoogle } from 'react-icons/si';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -69,9 +70,10 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Mess Management</h1>
+      
       {user ? (
         <>
+        <h1>Mess Management</h1>
           <div className="logout-icon" onClick={handleLogout}>
             <i className="fas fa-sign-out-alt"></i> {/* Logout Icon */}
           </div>
@@ -86,17 +88,20 @@ function App() {
           {message && <Notification message={message} />} {/* Render the notification */}
         </>
       ) : (
+        <>
+        <h1>Sign In</h1>
+        <img src="logo.png" alt="Logo" className="logo" />
         <div className="sign-in-container">
-          <img src="logo.png" alt="Logo" className="logo" />
           <h2>Sign In</h2>
           <button className="google-signin-btn" onClick={handleLogin}>
-            <i className="fab fa-google"></i> Sign in with Google
+          <i><SiGoogle size={20} color="red" /></i> Sign in with Google
           </button>
-          <p>
+          <p className='consent'>
             By Signing in, you agree to our 
           <div className="tac" onClick={() => handleOpenModal('TAC')}> Terms & Conditions</div>.
           </p>
        </div>
+       </>
       )}
 
 <Modal show={showModal} handleClose={handleCloseModal}>

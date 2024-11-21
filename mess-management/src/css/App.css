@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  block-size: 100%;
 }
 
 .dark-mode {
@@ -22,22 +23,34 @@
 }
 
 .sign-in-container {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 60% / 20%;
-	transform: translateY(180px);
+  background-color: rgb(78, 194, 230);
+  padding-block-start: 20px;
+  padding-block-end:40px;
+  border-radius: 50% 50% 0% 0%;
+	/* transform: translateY(50px); */
 	transition: 1s ease-in-out;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+  font-family: Helvetica, sans-serif;
+  /* block-size: 100vh; Full height */
+  block-size: 40vh;
+  margin-inline-start: -40px;
+  margin-inline-end: -40px;
+  /* box-shadow: -4px -10px 8px rgba(78, 194, 230, 0.5); */
 }
 
 .logo {
-  inline-size: 200px;
-  block-size: 200px;
-  margin-block-end: 10px;
+  inline-size: 250px;
+  block-size: 250px;
+  padding-block-start: 80px;
+  padding-block-end: 80px;
+
 }
 
 h2 {
   margin: 20px 0;
+  color: #fff;
+  padding-block-start: 40px;
+  font-size: 250%;
 }
 
 .logout-icon {
@@ -54,16 +67,19 @@ h2 {
   display: flex;
   justify-content: center; /* Center content horizontally */
   align-items: center; /* Center icon and text vertically */
-  background-color: #007bff; /* Google blue */
-  color: #fff; /* White text */ /* No border */
-  border-radius: 10px; /* Rounded corners */
+  background-color: #fff; /* Google blue */
+  color: #000000; /* White text */ /* No border */
+  border-radius: 50px; /* Rounded corners */
   padding: 15px; /* Padding */
-  font-size: 16px; /* Font size */
+  font-size: 18px; /* Font size */
   cursor: pointer; /* Pointer cursor */
+  text-wrap: nowrap;
   transition: background-color 0.3s; /* Transition effect */
   inline-size: 100%; /* Make the button take the full width */
   max-inline-size: 210px; /* Optional: Set a max-width for better appearance */
   margin: auto; /* Center the button horizontally */
+  padding-inline-start: 20px;
+  padding-inline-end: 20px;
 }
 
 
@@ -76,9 +92,10 @@ h2 {
 }
 
 .tac {
-  color: #007bff; /* Blue color */
+  color: #fff; /* Blue color */
   text-decoration: underline; /* Underline the text */
   cursor: pointer; /* Change cursor to pointer on hover */
+  font-weight: 400;
 }
 
 .tac:hover {
@@ -116,6 +133,14 @@ h2 {
   margin-block-start: 10px;
   inline-size: 100px;
   block-size: 100px;
+}
+
+.consent {
+  color: #000000;
+  font-weight: 400;
+  padding-block-start: 10px;
+  font-size: 20px;
+
 }
 
 /* Adjustments for larger screens */
