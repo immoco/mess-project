@@ -75,6 +75,15 @@ h2 {
   margin-inline-end: 10px; /* Space between icon and text */
 }
 
+.tac {
+  color: #007bff; /* Blue color */
+  text-decoration: underline; /* Underline the text */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+.tac:hover {
+  color: #0056b3; /* Darker blue on hover */
+}
 
 
 .tabs {
