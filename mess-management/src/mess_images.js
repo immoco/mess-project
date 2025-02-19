@@ -1,4 +1,5 @@
 import Himalaya from './assets/Mess_Images/Himalaya.png';
 import Nilgiri from './assets/Mess_Images/Nilgiri.png';
+import Canteen from './assets/Mess_Images/Canteen.png';
 
-export {Himalaya, Nilgiri}
+export {Himalaya, Nilgiri, Canteen}

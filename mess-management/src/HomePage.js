@@ -3,7 +3,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import Modal from './Modal';
 import { db, collection, query, where, getDocs } from './firebase'; // Ensure you have the correct path to your firebase configuration
 import './css/HomePage.css'; // Create a CSS file for styles
-import {Himalaya, Nilgiri} from './mess_images'
+import {Himalaya, Nilgiri, Canteen} from './mess_images'
 import Mess from "./assets/Mess.png";
 import Map from "./assets/Map_Nav.png";
 import Remind from "./assets/Remind.png";
@@ -219,8 +219,6 @@ const UserProfile = () => (
   <div className="user-profile">
     <div className="profile-info">
       <h3>{greeting}, {user.displayName}</h3>
-      <p>Current Meal</p>
-      <p>Today's Breakfast is Dosa & Toasted Bread with Jammy.</p>
       {mealMessage}
     </div>
     <img src={user.photoURL} alt="userProfile" className="profile-image" />
@@ -229,7 +227,7 @@ const UserProfile = () => (
 
 const ImageComponent = ({ imageName }) => {
   // Select the image based on the `imageName` prop
-  const images = { Himalaya, Nilgiri}; // Add other images if needed
+  const images = { Himalaya, Nilgiri, Canteen}; // Add other images if needed
   return (
       <img src={images[imageName]} alt={imageName} />
   );
@@ -326,7 +324,6 @@ const ImageComponent = ({ imageName }) => {
             <ImageComponent imageName={messImage} />
             <p><b>{messName}</b></p>
             <p>Mess Location: {messLocation}</p>
-            <p>Other details about the mess can be added here.</p>
           </>
         )}
       </Modal>
