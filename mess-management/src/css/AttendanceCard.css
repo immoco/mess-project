@@ -2,6 +2,10 @@
   padding: 20px 20px 80px 20px; /* Padding around the grid */
 }
 
+.attendance-card h2 {
+  color: black;
+}
+
 .attendance-card-container {
   display:flex;
   justify-content: center;
@@ -24,7 +28,7 @@
 }
 
 .attendance-card {
-  border: 1px solid #ddd;
+  border: 1px solid #dddddd84;
   border-radius: 8px;
   padding: 16px;
   margin: 20px auto;

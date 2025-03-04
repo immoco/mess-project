@@ -323,7 +323,8 @@ const ImageComponent = ({ imageName }) => {
             <h2>My Dining Hall</h2>
             <ImageComponent imageName={messImage} />
             <p><b>{messName}</b></p>
-            <p>Mess Location: {messLocation}</p>
+            <p><b>Mess Location: </b>{messLocation}</p>
+            <p>Have your meal within the alloted Time</p>
           </>
         )}
       </Modal>

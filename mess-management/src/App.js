@@ -11,6 +11,7 @@ import CodewordInput from './codeword.js';
 import HomePage from './HomePage.js';
 import Notification from './Notification'; // Import Notification component
 import { SiGoogle } from 'react-icons/si';
+import {logo} from './mess_images'
 
 function App() {
   const [user, setUser] = useState(null);
@@ -90,7 +91,7 @@ function App() {
       ) : (
         <>
         <h1>Sign In</h1>
-        <img src="logo.png" alt="Logo" className="logo" />
+        <img src={logo} alt="Logo" className="logo" />
         <div className="sign-in-container">
           <h2>Sign In</h2>
           <button className="google-signin-btn" onClick={handleLogin}>
