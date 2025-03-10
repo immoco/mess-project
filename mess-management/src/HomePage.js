@@ -229,7 +229,7 @@ const ImageComponent = ({ imageName }) => {
   // Select the image based on the `imageName` prop
   const images = { Himalaya, Nilgiri, Canteen}; // Add other images if needed
   return (
-      <img src={images[imageName]} alt={imageName} />
+      <img src={images[imageName]} alt={imageName} style={{ width: "100%", height: "auto", maxWidth: "300px", objectFit: "contain" }}  />
   );
 };  
 
