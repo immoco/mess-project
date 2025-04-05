@@ -58,6 +58,7 @@ const HomePage = ({ user}) => {
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState(null);
   const [language, setLanguage] = useState('English');
+  const [paymentStatus, setPaymentStatus] = useState(null);
 
 
   const [attendance, setAttendance] = useState({
@@ -197,6 +198,27 @@ const HomePage = ({ user}) => {
     fetchAttendance();
   }, [user.email]);
 
+  useEffect(() => {
+    if (user?.email) {
+      const fetchPaymentStatus = async () => {
+        try {
+          const userDocRef = doc(db, "students", user.email); // Firestore document path
+          const docSnap = await getDoc(userDocRef);
+
+          if (docSnap.exists()) {
+            setPaymentStatus(docSnap.data().paymentStatus);
+          } else {
+            console.log("No such document!");
+          }
+        } catch (error) {
+          console.error("Error fetching payment status:", error);
+        }
+      };
+
+      fetchPaymentStatus();
+    }
+  }, [user]);
+
   if (loading) return <p>Loading...</p>;
   const currentHour = new Date().getHours(); // Get the current hour
 let mealMessage;
@@ -220,6 +242,29 @@ const UserProfile = () => (
     <div className="profile-info">
       <h3>{greeting}, {user.displayName}</h3>
       {mealMessage}
+
+      <div style={{ textAlign: "center" }}>
+      <button
+        onClick={() => {
+          if (!paymentStatus) {
+            window.open("https://forms.gle/MztLZoavUC6Lb5aA6", "_blank");
+          }
+        }}
+        className={`payment-button ${paymentStatus ? "payment-verified" : "payment-pending"}`}
+        disabled={paymentStatus}
+      >
+        {paymentStatus ? "✅ Payment Verified" : "⚠️ Payment Pending"}
+      </button>
+
+      {!paymentStatus && (
+        <p style={{ marginTop: "10px", color: "black", fontWeight: "bold" }}>
+          If payment is done, Please contact your mess administrator to verify. <br />
+          If not, fill the form only once!.
+        </p>
+      )}
+    </div>
+
+
     </div>
     <img src={user.photoURL} alt="userProfile" className="profile-image" />
   </div>

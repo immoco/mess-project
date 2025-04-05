@@ -168,3 +168,54 @@
     font-weight: bold; /* Bold font for emphasis */
   }
   
+  .payment-button {
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .payment-button:active {
+    transform: scale(0.95);
+  }
+  
+  /* Payment Verified (Green) */
+  .payment-verified {
+    background-color: #22c55e;
+    color: white;
+  }
+  
+  .payment-verified:hover {
+    background-color: #16a34a;
+  }
+  
+  /* Payment Pending (Red) */
+  .payment-pending {
+    background-color: #ef4444;
+    color: white;
+    animation: pulse 1.5s infinite;
+  }
+  
+  .payment-pending:hover {
+    background-color: #dc2626;
+  }
+  
+  /* Pulse Animation for Payment Pending */
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 0.8;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
